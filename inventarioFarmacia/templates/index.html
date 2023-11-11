@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Farmacia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .add-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .add-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inventario de Farmacia</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Medicamento</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Presentacion</th>
+            <th>Acciones</th>
+        </tr>
+        {% for medicamento, precio in medicamentos_precios %}
+        <tr>
+            <td>{{ medicamento.Id }}</td>
+            <td>{{ medicamento.medicamento }}</td>
+            <td>{{ medicamento.cantidad }}</td>
+            <td>{{ medicamento.precio }}</td>
+            <td>{{ medicamento.presentacion }}</td>
+            <td><a href="{{ url_for('editar', medicamento_id=medicamento['Id']) }}">Editar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a class="add-link" href="{{ url_for('agregar') }}">Agregar nuevo medicamento</a>
+</body>
+</html>
